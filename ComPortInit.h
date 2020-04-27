@@ -5,6 +5,7 @@ void SettingComPort();
 void ComPortRead();
 void CloseComPort();
 void SendCmd(char * ch);
+void write_float(float f);
 float CreateFloatFromChar();
 
 #include <Windows.h>

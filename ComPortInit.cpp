@@ -185,11 +185,22 @@ void SendCmd(char * ch)
 
 	//std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	BOOL iRet = WriteFile(hSerial, ch, dwSize, &dwBytesWritten, NULL);
-	stateReader = READ_STATE::WAIT_ANSWER_CMD;
+	//stateReader = READ_STATE::WAIT_ANSWER_CMD;
 	mtx.unlock();
 
 
 	OutputDebugStringW(L"Send cmd\n");
+}
+
+void write_float(float f)
+{
+	DWORD dwSize = 4;
+	DWORD dwBytesWritten;
+	LPOVERLAPPED ov;
+
+	unsigned char* ptr;
+	ptr = (unsigned char*)&f;
+	WriteFile(hSerial, ptr, dwSize, &dwBytesWritten, NULL);
 }
 
 float CreateFloatFromChar()
